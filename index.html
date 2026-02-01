@@ -3,263 +3,228 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For My Bubu 💛</title>
+  <title>For My Bubu 🌸</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #fdf6f0, #f6e9e1);
+      background: linear-gradient(180deg, #cfd9df, #e2ebf0, #fdf6f0);
       color: #2f2f2f;
-      line-height: 1.7;
       overflow-x: hidden;
     }
 
     section {
       min-height: 100vh;
-      padding: 80px 20px;
+      padding: 90px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     h1, h2 {
       font-family: 'Playfair Display', serif;
-      font-weight: 600;
       margin-bottom: 20px;
     }
 
     p {
       max-width: 720px;
       font-size: 1.05rem;
+      line-height: 1.8;
       margin-bottom: 16px;
     }
 
-    .soft {
-      font-style: italic;
-      opacity: 0.9;
+    .soft { font-style: italic; opacity: 0.9; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      max-width: 900px;
     }
 
-    .button {
-      margin-top: 30px;
-      padding: 14px 28px;
-      border-radius: 50px;
+    .card {
+      background: rgba(255,255,255,0.75);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Floating petals */
+    .petal {
+      position: fixed;
+      top: -10%;
+      width: 16px;
+      height: 16px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) rotate(360deg);
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 30px;
+      border-radius: 40px;
       border: none;
       background: #2f2f2f;
       color: white;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
-    .button:hover {
-      background: #000;
-      transform: translateY(-2px);
+    button:hover { background: #000; }
+
+    /* Music button */
+    .music {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 10;
     }
 
-    .names span {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      margin: 10px 0;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      top: -10px;
+      animation: confetti-fall linear infinite;
     }
 
-    .names span:nth-child(1) { animation-delay: 0.2s; }
-    .names span:nth-child(2) { animation-delay: 0.6s; }
-    .names span:nth-child(3) { animation-delay: 1s; }
-    .names span:nth-child(4) { animation-delay: 1.4s; }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.7);
-      padding: 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-    }
-
-    .question button {
-      margin: 15px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 0.9rem;
-      opacity: 0.6;
+    @keyframes confetti-fall {
+      to { transform: translateY(120vh) rotate(720deg); }
     }
   </style>
 </head>
 <body>
 
-  <!-- SECTION 1: ARRIVAL -->
-  <section>
-    <h1>Hi my Bubu 🌙</h1>
-    <p class="soft">
-      I know love isn’t about grand gestures.  
-      It’s about staying. Choosing.  
-      Holding someone gently in a world that rarely is.
-    </p>
-    <button class="button" onclick="nextSection()">Come with me →</button>
-  </section>
+<!-- Music -->
+<audio id="song" loop>
+  <source src="music/until-i-found-you.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- SECTION 2: NAMES -->
-  <section class="hidden">
-    <h2>All the names I love you by</h2>
-    <div class="names">
-      <span>Bubu — when everything feels soft</span>
-      <span>Pondoo — when your laughter fills the room</span>
-      <span>Naaz — because you are precious</span>
-      <span>babu — because my love speaks in many names, but means you</span>
+<div class="music" onclick="toggleMusic()">🎵 Play our song</div>
+
+<!-- PETALS -->
+<script>
+  for (let i = 0; i < 25; i++) {
+    let petal = document.createElement("div");
+    petal.className = "petal";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = 10 + Math.random() * 10 + "s";
+    petal.style.background = ["#f6c1cc", "#f7a8b8", "#ffd1dc"][Math.floor(Math.random()*3)];
+    document.body.appendChild(petal);
+  }
+</script>
+
+<!-- SECTIONS -->
+<section>
+  <h1>Hi my Bubu 🌙</h1>
+  <p class="soft">
+    Love isn’t loud.  
+    It’s choosing someone gently — every day.
+  </p>
+</section>
+
+<section>
+  <h2>All the names I love you by</h2>
+  <p>Bubu. Pondoo. Naaz. babu.</p>
+  <p class="soft">Different names, same love — you.</p>
+</section>
+
+<section>
+  <h2>The way I see you</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>The Writer</h3>
+      <p>You turn feelings into worlds.</p>
     </div>
-  </section>
-
-  <!-- SECTION 3: WHO SHE IS -->
-  <section class="hidden">
-    <h2>The way I see you</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>The Writer</h3>
-        <p>
-          You feel deeply in words,  
-          turning emotions into worlds  
-          others didn’t know how to name.
-        </p>
-      </div>
-      <div class="card">
-        <h3>The Artist</h3>
-        <p>
-          You see beauty quietly.  
-          You create even when you’re tired.  
-          Especially then.
-        </p>
-      </div>
-      <div class="card">
-        <h3>The Dreamer</h3>
-        <p>
-          Music, stories, Ghibli skies,  
-          slow K-drama evenings —  
-          your heart lives softly.
-        </p>
-      </div>
+    <div class="card">
+      <h3>The Artist</h3>
+      <p>You see beauty quietly.</p>
     </div>
-  </section>
+    <div class="card">
+      <h3>The Dreamer</h3>
+      <p>Music. Ghibli skies. Soft hearts.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- SECTION 4: HOWL -->
-  <section class="hidden">
-    <h2>About love, and choosing</h2>
-    <p>
-      You once loved Howl not because he was magical,  
-      but because he chose — fiercely, gently, without conditions.
-    </p>
-    <p>
-      And maybe I’m not a wizard…  
-      but if loving you means choosing you every day,  
-      then I already know my magic.
-    </p>
-  </section>
+<section>
+  <h2>About choosing</h2>
+  <p>
+    You loved Howl because he chose.  
+    Fiercely. Gently. Without conditions.
+  </p>
+  <p>
+    Maybe I’m not magic —  
+    but my choice is always you.
+  </p>
+</section>
 
-  <!-- SECTION 5: GOOD DINOSAUR -->
-  <section class="hidden">
-    <h2>The Good Dinosaur 🦖</h2>
-    <p>
-      You call me that because you say I’m good at heart.  
-      And I think that’s because loving you  
-      has made gentleness feel like strength.
-    </p>
-    <p class="soft">
-      If being good means choosing you,  
-      then I’ll always be that dinosaur.
-    </p>
-  </section>
+<section>
+  <h2>The Good Dinosaur 🦖</h2>
+  <p class="soft">
+    You say I’m good at heart.  
+    If that means choosing you — I’ll always be him.
+  </p>
+</section>
 
-  <!-- SECTION 6: CHOOSING HER -->
-  <section class="hidden">
-    <h2>I choose you</h2>
-    <p>
-      Love isn’t a question for me.  
-      It’s a decision I make —  
-      in calm days, in chaos, in all the in-betweens.
-    </p>
-    <p>
-      I choose you not because it’s easy,  
-      but because it’s you.
-    </p>
-  </section>
+<section>
+  <h2>So…</h2>
+  <h1>Will you be my Valentine? 🌹</h1>
+  <button onclick="celebrate()">Yes 💖</button>
+</section>
 
-  <!-- SECTION 7: THE QUESTION -->
-  <section class="hidden question">
-    <h1>So…</h1>
-    <p class="soft">
-      even though you already have my heart,
-    </p>
-    <h2>will you be my Valentine? 💛</h2>
+<section id="final" style="display:none;">
+  <h1>Happy Valentine’s Day, my love 🌸</h1>
+  <p>I’ll keep choosing you — like Howl, but as me.</p>
+</section>
 
-    <button class="button" onclick="yes()">Yes 💖</button>
-    <button class="button" onclick="yes()">You already know</button>
-  </section>
+<script>
+  let playing = false;
+  function toggleMusic() {
+    const song = document.getElementById("song");
+    playing ? song.pause() : song.play();
+    playing = !playing;
+  }
 
-  <!-- SECTION 8: YES -->
-  <section id="yesSection" class="hidden">
-    <h1>Happy Valentine’s Day, my love 🌷</h1>
-    <p>
-      I’ll keep choosing you —  
-      like Howl,  
-      but as me.
-    </p>
-  </section>
+  function celebrate() {
+    document.getElementById("final").style.display = "flex";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 
-  <footer>
-    Made with love, always.
-  </footer>
-
-  <script>
-    const sections = document.querySelectorAll("section");
-    let current = 0;
-
-    function nextSection() {
-      sections[current].classList.add("hidden");
-      current++;
-      sections[current].classList.remove("hidden");
+    for (let i = 0; i < 120; i++) {
+      let conf = document.createElement("div");
+      conf.className = "confetti";
+      conf.style.left = Math.random() * 100 + "vw";
+      conf.style.animationDuration = 2 + Math.random() * 3 + "s";
+      conf.style.background = ["#ff5e7e", "#ffd1dc", "#ffb6c1"][Math.floor(Math.random()*3)];
+      document.body.appendChild(conf);
     }
-
-    sections.forEach((section, index) => {
-      if (index !== 0) {
-        section.addEventListener("click", nextSection);
-      }
-    });
-
-    function yes() {
-      sections[current].classList.add("hidden");
-      document.getElementById("yesSection").classList.remove("hidden");
-    }
-  </script>
+  }
+</script>
 
 </body>
 </html>
