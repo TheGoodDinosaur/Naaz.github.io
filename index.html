@@ -1,223 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>For You</title>
+<meta charset="UTF-8">
+<title>For Naaz 🌙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: radial-gradient(circle at top, #fdeff4, #f7d9e3, #e9c7d1);
-  color: #2d1c22;
+  font-family: 'EB Garamond', serif;
+  background: linear-gradient(#1f2a44, #3a4a6a, #6b7ba5);
+  color: #f6f4f1;
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* 🌸 GLOBAL LAYERS */
-.stars, .petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ⭐ STARS */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 50%;
-  animation: twinkle 6s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%,100% { opacity: 0.3; }
-  50% { opacity: 1; }
-}
-
-/* 🌸 PETALS */
-.petal {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background-image: url('petal.png'); /* replace later */
-  background-size: cover;
-  opacity: 0.6;
-  animation: drift 25s linear infinite;
-}
-
-@keyframes drift {
-  from { transform: translateY(-10%) translateX(0) rotate(0deg); }
-  to { transform: translateY(110vh) translateX(80px) rotate(360deg); }
-}
-
-/* 🌿 SECTIONS */
 section {
-  min-height: 90vh;
+  min-height: 100vh;
+  padding: 80px 12vw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 80px 40px;
-  z-index: 2;
 }
 
-/* HERO */
-.hero {
-  flex-direction: column;
-  text-align: center;
+p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  max-width: 650px;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
-  margin-bottom: 30px;
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1.6s ease;
 }
 
-.hero img {
-  max-width: 420px;
-  border-radius: 24px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* GALLERY */
-.gallery {
+/* Floating particles */
+.particles span {
+  position: fixed;
+  top: -10%;
+  font-size: 14px;
+  opacity: 0.25;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(120vh); }
+}
+
+/* Photos */
+.memory {
+  display: flex;
   gap: 40px;
+  flex-wrap: wrap;
 }
-
-.gallery img {
-  width: 320px;
-  border-radius: 22px;
-  transition: transform 0.6s ease;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+.memory img {
+  width: 260px;
+  border-radius: 20px;
+  filter: brightness(0.95) saturate(1.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transition: transform 6s ease;
 }
-
-.gallery img:hover {
-  transform: translateY(-10px) scale(1.03);
-}
-
-/* TRANSITION */
-.transition {
-  background: linear-gradient(to bottom, #f7d9e3, #fdf5f8);
-  text-align: center;
-}
-
-.transition p {
-  font-size: 1.4rem;
-  max-width: 600px;
-}
-
-/* YES SECTION */
-.yes {
-  background: radial-gradient(circle at center, #fff0f6, #f3c6d9);
-  flex-direction: column;
-}
-
-.yes h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
-  margin-bottom: 20px;
-}
-
-.yes button {
-  margin-top: 30px;
-  padding: 16px 40px;
-  font-size: 1.1rem;
-  border-radius: 999px;
-  border: none;
-  background: #d94f7c;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-}
-
-.yes button:hover {
+.memory img:hover {
   transform: scale(1.05);
 }
 
-/* HEARTS */
-.heart {
-  position: fixed;
-  font-size: 22px;
-  animation: floatUp 6s ease-out forwards;
+/* Calcifer */
+#calcifer {
+  font-size: 3rem;
+  cursor: pointer;
+}
+#whisper {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0;
+  transition: 1s;
 }
 
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-200px); opacity: 0; }
+/* Buttons */
+.buttons {
+  margin-top: 40px;
+}
+button {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  padding: 14px 36px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+#yes {
+  background: #f2b5c4;
+}
+#no {
+  background: #cfd6f0;
+  position: relative;
+}
+
+footer {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 2rem;
 }
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-<div class="petals"></div>
+<!-- floating magic -->
+<div class="particles">
+  <span style="left:10%; animation-duration:18s;">✨</span>
+  <span style="left:30%; animation-duration:22s;">🌸</span>
+  <span style="left:60%; animation-duration:26s;">✨</span>
+  <span style="left:80%; animation-duration:20s;">🌸</span>
+</div>
 
-<section class="hero">
-  <h1>Every version of you is my favorite</h1>
-  <img src="photo1.jpg" />
-</section>
+<audio id="music" src="music.mp3"></audio>
 
-<section class="gallery">
-  <img src="photo2.jpg" />
-  <img src="photo3.jpg" />
-</section>
-
-<section class="transition">
-  <p>
-    Some moments don’t stay still.<br>
-    They soften, they glow,<br>
-    they turn into something magical.
+<section>
+  <p class="fade">
+    Hi Sophie.<br><br>
+    This isn’t a grand entrance.<br>
+    Just me… hoping you’ll let me stay a while.
   </p>
 </section>
 
-<section class="yes">
-  <h2>Will you stay in this world with me?</h2>
-  <button id="yesBtn">Yes</button>
+<section>
+  <p class="fade">
+    Before you, love felt like something I had to earn.<br><br>
+    Like I was chosen only when I was useful.<br>
+    But you… you always come back.<br><br>
+    You choose me — and you keep choosing me,
+    even when I stop trying to prove anything.
+  </p>
 </section>
 
+<section>
+  <div class="memory fade">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+  </div>
+</section>
+
+<section>
+  <div>
+    <div id="calcifer">🔥</div>
+    <div id="whisper">He says you’re smiling.</div>
+  </div>
+</section>
+
+<section>
+  <div class="fade">
+    <p>
+      Loving you feels like finding a home
+      I didn’t know I was allowed to want.<br><br>
+      So I’ll ask — not because I doubt the answer,
+      but because choosing you is my favorite thing.
+    </p>
+
+    <div class="buttons">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+</section>
+
+<footer class="fade">
+  Naaz,<br>
+  will you be my Valentine? 💖
+</footer>
+
 <script>
-/* ⭐ STARS */
-for (let i = 0; i < 120; i++) {
-  const s = document.createElement('div');
-  s.className = 'star';
-  s.style.top = Math.random() * 100 + '%';
-  s.style.left = Math.random() * 100 + '%';
-  s.style.animationDelay = Math.random() * 6 + 's';
-  document.querySelector('.stars').appendChild(s);
-}
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+  fades.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add('show');
+    }
+  });
+});
 
-/* 🌸 PETALS */
-for (let i = 0; i < 18; i++) {
-  const p = document.createElement('div');
-  p.className = 'petal';
-  p.style.left = Math.random() * 100 + '%';
-  p.style.animationDelay = Math.random() * 25 + 's';
-  document.querySelector('.petals').appendChild(p);
-}
-
-/* ❤️ YES MOMENT */
-document.getElementById('yesBtn').addEventListener('click', () => {
-  for (let i = 0; i < 40; i++) {
-    const h = document.createElement('div');
-    h.className = 'heart';
-    h.textContent = '❤';
-    h.style.left = Math.random() * 100 + '%';
-    h.style.bottom = '20px';
-    h.style.animationDelay = Math.random() * 1.5 + 's';
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 6000);
+// music trigger
+let played = false;
+window.addEventListener('scroll', () => {
+  if (!played && window.scrollY > window.innerHeight * 2) {
+    document.getElementById('music').play();
+    played = true;
   }
 });
+
+// calcifer
+document.getElementById('calcifer').onclick = () => {
+  document.getElementById('whisper').style.opacity = 1;
+};
+
+// playful no
+const no = document.getElementById('no');
+no.onmouseover = () => {
+  no.style.left = Math.random()*120 - 60 + 'px';
+  no.style.top  = Math.random()*80 - 40 + 'px';
+};
+
+// yes
+document.getElementById('yes').onclick = () => {
+  document.body.innerHTML =
+    "<footer>Of course it was always yes 🌙</footer>";
+};
 </script>
 
 </body>
