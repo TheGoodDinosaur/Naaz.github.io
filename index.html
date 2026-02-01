@@ -1,219 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Naaz 🌙</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Bubu 💛</title>
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'EB Garamond', serif;
-  background: linear-gradient(#1f2a44, #3a4a6a, #6b7ba5);
-  color: #f6f4f1;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-section {
-  min-height: 100vh;
-  padding: 80px 12vw;
-  display: flex;
-  align-items: center;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #fdf6f0, #f6e9e1);
+      color: #2f2f2f;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-p {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  max-width: 650px;
-}
+    section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 1.6s ease;
-}
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    p {
+      max-width: 720px;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
 
-/* Floating particles */
-.particles span {
-  position: fixed;
-  top: -10%;
-  font-size: 14px;
-  opacity: 0.25;
-  animation: fall linear infinite;
-}
-@keyframes fall {
-  to { transform: translateY(120vh); }
-}
+    .soft {
+      font-style: italic;
+      opacity: 0.9;
+    }
 
-/* Photos */
-.memory {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.memory img {
-  width: 260px;
-  border-radius: 20px;
-  filter: brightness(0.95) saturate(1.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  transition: transform 6s ease;
-}
-.memory img:hover {
-  transform: scale(1.05);
-}
+    .button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: none;
+      background: #2f2f2f;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-/* Calcifer */
-#calcifer {
-  font-size: 3rem;
-  cursor: pointer;
-}
-#whisper {
-  margin-top: 20px;
-  font-style: italic;
-  opacity: 0;
-  transition: 1s;
-}
+    .button:hover {
+      background: #000;
+      transform: translateY(-2px);
+    }
 
-/* Buttons */
-.buttons {
-  margin-top: 40px;
-}
-button {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
-  padding: 14px 36px;
-  border-radius: 40px;
-  border: none;
-  cursor: pointer;
-  margin-right: 20px;
-}
-#yes {
-  background: #f2b5c4;
-}
-#no {
-  background: #cfd6f0;
-  position: relative;
-}
+    .names span {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin: 10px 0;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
 
-footer {
-  text-align: center;
-  padding: 100px 20px;
-  font-size: 2rem;
-}
-</style>
+    .names span:nth-child(1) { animation-delay: 0.2s; }
+    .names span:nth-child(2) { animation-delay: 0.6s; }
+    .names span:nth-child(3) { animation-delay: 1s; }
+    .names span:nth-child(4) { animation-delay: 1.4s; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.7);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .question button {
+      margin: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- floating magic -->
-<div class="particles">
-  <span style="left:10%; animation-duration:18s;">✨</span>
-  <span style="left:30%; animation-duration:22s;">🌸</span>
-  <span style="left:60%; animation-duration:26s;">✨</span>
-  <span style="left:80%; animation-duration:20s;">🌸</span>
-</div>
-
-<audio id="music" src="music.mp3"></audio>
-
-<section>
-  <p class="fade">
-    Hi Sophie.<br><br>
-    This isn’t a grand entrance.<br>
-    Just me… hoping you’ll let me stay a while.
-  </p>
-</section>
-
-<section>
-  <p class="fade">
-    Before you, love felt like something I had to earn.<br><br>
-    Like I was chosen only when I was useful.<br>
-    But you… you always come back.<br><br>
-    You choose me — and you keep choosing me,
-    even when I stop trying to prove anything.
-  </p>
-</section>
-
-<section>
-  <div class="memory fade">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-  </div>
-</section>
-
-<section>
-  <div>
-    <div id="calcifer">🔥</div>
-    <div id="whisper">He says you’re smiling.</div>
-  </div>
-</section>
-
-<section>
-  <div class="fade">
-    <p>
-      Loving you feels like finding a home
-      I didn’t know I was allowed to want.<br><br>
-      So I’ll ask — not because I doubt the answer,
-      but because choosing you is my favorite thing.
+  <!-- SECTION 1: ARRIVAL -->
+  <section>
+    <h1>Hi my Bubu 🌙</h1>
+    <p class="soft">
+      I know love isn’t about grand gestures.  
+      It’s about staying. Choosing.  
+      Holding someone gently in a world that rarely is.
     </p>
+    <button class="button" onclick="nextSection()">Come with me →</button>
+  </section>
 
-    <div class="buttons">
-      <button id="yes">Yes</button>
-      <button id="no">No</button>
+  <!-- SECTION 2: NAMES -->
+  <section class="hidden">
+    <h2>All the names I love you by</h2>
+    <div class="names">
+      <span>Bubu — when everything feels soft</span>
+      <span>Pondoo — when your laughter fills the room</span>
+      <span>Naaz — because you are precious</span>
+      <span>babu — because my love speaks in many names, but means you</span>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="fade">
-  Naaz,<br>
-  will you be my Valentine? 💖
-</footer>
+  <!-- SECTION 3: WHO SHE IS -->
+  <section class="hidden">
+    <h2>The way I see you</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>The Writer</h3>
+        <p>
+          You feel deeply in words,  
+          turning emotions into worlds  
+          others didn’t know how to name.
+        </p>
+      </div>
+      <div class="card">
+        <h3>The Artist</h3>
+        <p>
+          You see beauty quietly.  
+          You create even when you’re tired.  
+          Especially then.
+        </p>
+      </div>
+      <div class="card">
+        <h3>The Dreamer</h3>
+        <p>
+          Music, stories, Ghibli skies,  
+          slow K-drama evenings —  
+          your heart lives softly.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<script>
-const fades = document.querySelectorAll('.fade');
-window.addEventListener('scroll', () => {
-  fades.forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-      el.classList.add('show');
+  <!-- SECTION 4: HOWL -->
+  <section class="hidden">
+    <h2>About love, and choosing</h2>
+    <p>
+      You once loved Howl not because he was magical,  
+      but because he chose — fiercely, gently, without conditions.
+    </p>
+    <p>
+      And maybe I’m not a wizard…  
+      but if loving you means choosing you every day,  
+      then I already know my magic.
+    </p>
+  </section>
+
+  <!-- SECTION 5: GOOD DINOSAUR -->
+  <section class="hidden">
+    <h2>The Good Dinosaur 🦖</h2>
+    <p>
+      You call me that because you say I’m good at heart.  
+      And I think that’s because loving you  
+      has made gentleness feel like strength.
+    </p>
+    <p class="soft">
+      If being good means choosing you,  
+      then I’ll always be that dinosaur.
+    </p>
+  </section>
+
+  <!-- SECTION 6: CHOOSING HER -->
+  <section class="hidden">
+    <h2>I choose you</h2>
+    <p>
+      Love isn’t a question for me.  
+      It’s a decision I make —  
+      in calm days, in chaos, in all the in-betweens.
+    </p>
+    <p>
+      I choose you not because it’s easy,  
+      but because it’s you.
+    </p>
+  </section>
+
+  <!-- SECTION 7: THE QUESTION -->
+  <section class="hidden question">
+    <h1>So…</h1>
+    <p class="soft">
+      even though you already have my heart,
+    </p>
+    <h2>will you be my Valentine? 💛</h2>
+
+    <button class="button" onclick="yes()">Yes 💖</button>
+    <button class="button" onclick="yes()">You already know</button>
+  </section>
+
+  <!-- SECTION 8: YES -->
+  <section id="yesSection" class="hidden">
+    <h1>Happy Valentine’s Day, my love 🌷</h1>
+    <p>
+      I’ll keep choosing you —  
+      like Howl,  
+      but as me.
+    </p>
+  </section>
+
+  <footer>
+    Made with love, always.
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    let current = 0;
+
+    function nextSection() {
+      sections[current].classList.add("hidden");
+      current++;
+      sections[current].classList.remove("hidden");
     }
-  });
-});
 
-// music trigger
-let played = false;
-window.addEventListener('scroll', () => {
-  if (!played && window.scrollY > window.innerHeight * 2) {
-    document.getElementById('music').play();
-    played = true;
-  }
-});
+    sections.forEach((section, index) => {
+      if (index !== 0) {
+        section.addEventListener("click", nextSection);
+      }
+    });
 
-// calcifer
-document.getElementById('calcifer').onclick = () => {
-  document.getElementById('whisper').style.opacity = 1;
-};
-
-// playful no
-const no = document.getElementById('no');
-no.onmouseover = () => {
-  no.style.left = Math.random()*120 - 60 + 'px';
-  no.style.top  = Math.random()*80 - 40 + 'px';
-};
-
-// yes
-document.getElementById('yes').onclick = () => {
-  document.body.innerHTML =
-    "<footer>Of course it was always yes 🌙</footer>";
-};
-</script>
+    function yes() {
+      sections[current].classList.add("hidden");
+      document.getElementById("yesSection").classList.remove("hidden");
+    }
+  </script>
 
 </body>
 </html>
