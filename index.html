@@ -1,202 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For My Bubu 🌸</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Naaz 💖</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family:'Inter', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x:hidden;
       background: linear-gradient(to bottom, #bcd7e8 0%, #eaf2f8 40%, #fdf6f0 100%);
-      color: #2f2f2f;
-      overflow-x: hidden;
+      color:#3a2f3c;
     }
-
+    section {
+      min-height:90vh;
+      padding:80px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      z-index:2;
+    }
+    .chapter {
+      max-width:720px;
+      text-align:center;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all 1.2s ease;
+    }
+    .chapter.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+    h1,h2 { font-family:'Playfair Display', serif; font-weight:400; }
+    h1 { font-size:2.6rem; margin-bottom:16px; }
+    h2 { font-size:2.2rem; margin-bottom:24px; }
+    p { font-size:1.05rem; line-height:1.9; margin:14px 0; }
+    .hint { margin-top:40px; font-size:0.85rem; opacity:0.6; }
+    
     /* CLOUDS */
     .cloud {
-      position: fixed;
-      top: 10%;
-      width: 220px;
-      height: 70px;
+      position:fixed;
+      top:10%;
+      width:220px;
+      height:70px;
       background: rgba(255,255,255,0.8);
-      border-radius: 50px;
+      border-radius:50px;
       filter: blur(2px);
       animation: moveClouds linear infinite;
-      z-index: 0;
+      z-index:0;
     }
-
-    .cloud::before,
-    .cloud::after {
-      content: '';
-      position: absolute;
-      background: inherit;
-      width: 100px;
-      height: 100px;
-      top: -40px;
-      border-radius: 50%;
+    .cloud::before, .cloud::after {
+      content:'';
+      position:absolute;
+      background:inherit;
+      width:100px;
+      height:100px;
+      top:-40px;
+      border-radius:50%;
     }
-
-    .cloud::before { left: 30px; }
-    .cloud::after { right: 30px; }
-
-    @keyframes moveClouds {
-      from { transform: translateX(-300px); }
-      to { transform: translateX(120vw); }
-    }
+    .cloud::before { left:30px; }
+    .cloud::after { right:30px; }
+    @keyframes moveClouds { from {transform:translateX(-300px);} to {transform:translateX(120vw);} }
 
     /* PETALS */
-    .petal {
-      position: fixed;
-      top: -10%;
-      width: 14px;
-      height: 14px;
-      background: pink;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: fall linear infinite;
-      z-index: 1;
-    }
+    .petal { position:fixed; top:-10%; width:14px; height:14px; border-radius:50%; opacity:0.6; animation: fall linear infinite; z-index:1; }
+    @keyframes fall { to { transform:translateY(120vh) rotate(360deg); } }
 
-    @keyframes fall {
-      to {
-        transform: translateY(120vh) rotate(360deg);
-      }
-    }
+    /* PHOTOS */
+    .photo { width:220px; border-radius:18px; margin:24px auto; filter:grayscale(10%) contrast(1.05); box-shadow:0 20px 40px rgba(0,0,0,0.12); transition: transform 0.6s ease; }
+    .photo:hover { transform: scale(1.03); }
 
-    section {
-      min-height: 90vh;
-      padding: 80px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+    /* FLAME */
+    .flame { width:40px; height:40px; background:radial-gradient(circle at center, #ffcc70, #ff6b6b); border-radius:50%; margin:40px auto; animation: float 3s ease-in-out infinite; cursor:pointer; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
 
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 20px;
-    }
-
-    p {
-      max-width: 720px;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .soft { font-style: italic; opacity: 0.9; }
-
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.8);
-      padding: 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(8px);
-    }
-
-    /* HABITS */
-    .habit {
-      background: rgba(255,255,255,0.75);
-      padding: 18px 22px;
-      border-radius: 18px;
-      margin: 12px 0;
-      max-width: 750px;
-    }
-
-    /* GALLERY */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin-top: 30px;
-    }
-
-    .photo-card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .photo-card img {
-      width: 100%;
-      display: block;
-    }
-
-    .photo-card p {
-      padding: 14px;
-      font-size: 0.95rem;
-    }
-
-    /* BUTTON */
-    button {
-      margin-top: 25px;
-      padding: 14px 32px;
-      border-radius: 40px;
-      border: none;
-      background: #2f2f2f;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    button:hover { background: #000; }
+    /* BUTTONS */
+    .buttons { margin-top:40px; }
+    button { padding:14px 28px; border-radius:999px; border:none; font-size:1rem; cursor:pointer; margin:12px; transition: all 0.3s ease; }
+    .yes { background:#ff7aa2; color:white; }
+    .no { background:#eee; position:relative; }
 
     /* MUSIC */
-    .music {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.65);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 30px;
-      cursor: pointer;
-      z-index: 10;
-      font-size: 0.9rem;
-    }
+    .music { position:fixed; bottom:20px; right:20px; background:rgba(0,0,0,0.65); color:white; padding:10px 16px; border-radius:30px; cursor:pointer; z-index:10; font-size:0.9rem; }
+    .music-hint { margin-top:30px; font-size:0.85rem; opacity:0; transition: opacity 1s ease; }
+    .music-hint.visible { opacity:0.7; }
 
     /* CONFETTI */
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background: red;
-      top: -10px;
-      animation: confetti-fall linear infinite;
-      z-index: 5;
-    }
+    .confetti { font-size:2rem; margin-top:20px; }
+    
+    footer { text-align:center; font-style:italic; padding:40px 20px; opacity:0.8; }
 
-    @keyframes confetti-fall {
-      to { transform: translateY(120vh) rotate(720deg); }
-    }
-
-    footer {
-      padding: 60px 20px;
-      text-align: center;
-      font-style: italic;
-      opacity: 0.8;
-    }
   </style>
 </head>
-
 <body>
 
 <!-- CLOUDS -->
@@ -206,123 +107,131 @@
 
 <!-- PETALS -->
 <script>
-  for (let i = 0; i < 30; i++) {
-    let p = document.createElement("div");
-    p.className = "petal";
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.animationDuration = 12 + Math.random() * 10 + "s";
-    p.style.background = ["#f6c1cc","#ffd1dc","#ffb6c1"][Math.floor(Math.random()*3)];
+  for(let i=0;i<25;i++){
+    let p=document.createElement('div');
+    p.className='petal';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=12+Math.random()*10+'s';
+    p.style.background=['#f6c1cc','#ffd1dc','#ffb6c1'][Math.floor(Math.random()*3)];
     document.body.appendChild(p);
   }
 </script>
 
 <!-- MUSIC -->
-<audio id="song" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
+<audio id="song" src="music.mp3"></audio>
 <div class="music" onclick="toggleMusic()">🎵 Play our song</div>
 
-<!-- CONTENT -->
+<!-- CHAPTER 1 -->
 <section>
-  <h1>Hi my Bubu 🌙</h1>
-  <p class="soft">
-    Love isn’t loud.  
-    It’s choosing someone gently — every single day.
-  </p>
-</section>
-
-<section>
-  <h2>All the names I love you by</h2>
-  <p>Bubu · Pondoo · Naaz · babu</p>
-  <p class="soft">Different names. Same soul. Always you.</p>
-</section>
-
-<section>
-  <h2>The way I see you</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>The Writer</h3>
-      <p>You turn feelings into worlds.</p>
-    </div>
-    <div class="card">
-      <h3>The Artist</h3>
-      <p>You see beauty quietly.</p>
-    </div>
-    <div class="card">
-      <h3>The Dreamer</h3>
-      <p>Music, Ghibli skies, slow love.</p>
-    </div>
+  <div class="chapter">
+    <h1>Hi.</h1>
+    <p>This isn’t a grand entrance.<br>It’s just me — quietly hoping you’ll stay for a while.</p>
+    <div class="hint">scroll slowly</div>
   </div>
 </section>
 
+<!-- CHAPTER 2 -->
 <section>
-  <h2>The little things about you</h2>
-  <div class="habit">The way you disappear into music.</div>
-  <div class="habit">How stories feel like home to you.</div>
-  <div class="habit">How softness is your strength.</div>
-  <div class="habit">How you love deeply and quietly.</div>
-</section>
-
-<section>
-  <h2>Moments I hold close 📸</h2>
-  <div class="gallery">
-    <div class="photo-card"><img src="images/photo1.jpg"><p>This smile, always.</p></div>
-    <div class="photo-card"><img src="images/photo2.jpg"><p>This is home.</p></div>
-    <div class="photo-card"><img src="images/photo3.jpeg"><p>The way I choose you.</p></div>
-    <div class="photo-card"><img src="images/photo4.jpeg"><p>Every version of you.</p></div>
-    <div class="photo-card"><img src="images/photo5.jpeg"><p>Forever my favorite view.</p></div>
+  <div class="chapter">
+    <h2>Something I never told you</h2>
+    <p>Before you, love felt conditional.<br>Like I had to earn my place every day.</p>
+    <p>But you… you always come back.<br>You choose me — even when I’ve stopped trying to prove anything.</p>
   </div>
 </section>
 
+<!-- CHAPTER 3: PHOTOS -->
 <section>
-  <h2>About choosing</h2>
-  <p>You loved Howl because he chose — fiercely and gently.</p>
-  <p>Maybe I’m not magic, but my choice is always you.</p>
+  <div class="chapter">
+    <h2>This is how I see you</h2>
+    <img src="images/photo1.jpg" class="photo">
+    <p>You don’t realize how gentle your presence is.</p>
+    <img src="images/photo2.jpg" class="photo">
+    <p>You make the world quieter just by existing.</p>
+    <img src="images/photo3.jpeg" class="photo">
+    <p>Your laughter is my favorite sound.</p>
+    <img src="images/photo4.jpeg" class="photo">
+    <p>Every little thing you do feels magical.</p>
+    <img src="images/photo5.jpeg" class="photo">
+    <p>Simply being you is everything.</p>
+  </div>
 </section>
 
+<!-- CHAPTER 4: FLAME -->
 <section>
-  <h2>The Good Dinosaur 🦖</h2>
-  <p class="soft">
-    If being good at heart means choosing you,  
-    then I’ll always be him.
-  </p>
+  <div class="chapter">
+    <h2>A little magic</h2>
+    <div class="flame" title="He says you’re smiling"></div>
+    <p>Even joy behaves differently around you.</p>
+    <div class="music-hint" id="musicText">this song reminds me of you</div>
+  </div>
 </section>
 
+<!-- CHAPTER 5: QUESTION -->
 <section>
-  <h1>Will you be my Valentine? 🌹</h1>
-  <button onclick="celebrate()">Yes 💖</button>
+  <div class="chapter">
+    <h2>So…</h2>
+    <p>Loving you feels like finding a home I didn’t know I was allowed to want.</p>
+    <h2>Naaz, will you be my Valentine?</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="accept()">Yes 💖</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+
+    <div id="result"></div>
+  </div>
 </section>
 
-<section id="final" style="display:none;">
-  <h1>Happy Valentine’s Day, my love 🌸</h1>
-  <p>I’ll keep choosing you — like Howl, but as me.</p>
-</section>
-
-<footer>
-  — The Good Dinosaur
-</footer>
+<footer>— The Good Dinosaur</footer>
 
 <script>
-  let playing = false;
-  function toggleMusic() {
-    const song = document.getElementById("song");
-    playing ? song.pause() : song.play();
-    playing = !playing;
-  }
+  // Chapter reveal on scroll
+  const chapters=document.querySelectorAll('.chapter');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  }, { threshold:0.3 });
+  chapters.forEach(c=>observer.observe(c));
 
-  function celebrate() {
-    document.getElementById("final").style.display = "flex";
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  // Music toggle on flame click
+  const flame=document.querySelector('.flame');
+  const song=document.getElementById('song');
+  const musicText=document.getElementById('musicText');
+  flame.addEventListener('click',()=>{
+    song.play();
+    musicText.classList.add('visible');
+  });
 
-    for (let i = 0; i < 140; i++) {
-      let c = document.createElement("div");
-      c.className = "confetti";
-      c.style.left = Math.random() * 100 + "vw";
-      c.style.animationDuration = 2 + Math.random() * 3 + "s";
-      c.style.background = ["#ff5e7e","#ffd1dc","#ffb6c1"][Math.floor(Math.random()*3)];
+  // No button run away
+  const noBtn=document.getElementById('noBtn');
+  let moved=false;
+  noBtn.addEventListener('mouseenter',()=>{
+    if(!moved){ noBtn.style.transform='translateX(120px)'; moved=true; }
+    else { noBtn.innerText='okay okay 💖'; noBtn.style.transform='none'; }
+  });
+
+  // Yes button confetti
+  function accept(){
+    const result=document.getElementById('result');
+    result.innerHTML='<div class="confetti">✨💖✨<br>I knew.</div>';
+    for(let i=0;i<120;i++){
+      let c=document.createElement('div');
+      c.className='confetti';
+      c.style.left=Math.random()*100+'vw';
+      c.style.animationDuration=2+Math.random()*3+'s';
+      c.style.color=['#ff5e7e','#ffd1dc','#ffb6c1'][Math.floor(Math.random()*3)];
+      c.innerText='🌹';
       document.body.appendChild(c);
     }
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }
+
+  // Music toggle function
+  let playing=false;
+  function toggleMusic(){
+    playing ? song.pause() : song.play();
+    playing=!playing;
   }
 </script>
 
