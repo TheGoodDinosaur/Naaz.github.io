@@ -8,13 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Inter',sans-serif;
   background:linear-gradient(180deg,#fdf6f0,#f7eef7);
   color:#3a2f3c;
   scroll-behavior:smooth;
+  overflow-x:hidden;
 }
 
 section{
@@ -60,13 +61,12 @@ p{
   box-shadow:0 20px 40px rgba(0,0,0,0.15);
   transition:transform .4s ease;
 }
-.photo:hover{
-  transform:scale(1.04);
-}
+.photo:hover{transform:scale(1.04)}
 
 /* flame */
 .flame{
-  width:44px;height:44px;
+  width:44px;
+  height:44px;
   background:radial-gradient(circle,#ffd27d,#ff6b6b);
   border-radius:50%;
   margin:40px auto;
@@ -91,14 +91,42 @@ button{
 .yes{background:#ff7aa2;color:white}
 .no{background:#eee;position:relative}
 
-/* music */
+/* music hint */
 .music-hint{
   margin-top:20px;
-  font-size:0.9rem;
+  font-size:.9rem;
   opacity:0;
   transition:opacity 1s ease;
 }
-.music-hint.visible{opacity:0.7}
+.music-hint.visible{opacity:.7}
+
+/* celebration particles */
+.particle{
+  position:fixed;
+  top:-10%;
+  font-size:1.6rem;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  0%{
+    transform:translateY(0) translateX(0) rotate(0deg);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(120vh) translateX(60px) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* ending message */
+.final-message{
+  margin-top:26px;
+  font-size:1.05rem;
+  line-height:1.8;
+  opacity:.9;
+}
 
 /* footer */
 footer{
@@ -107,25 +135,14 @@ footer{
   font-style:italic;
   opacity:.85;
 }
-
-/* confetti */
-.confetti{
-  position:fixed;
-  top:-10%;
-  font-size:2rem;
-  animation:fall 3s linear forwards;
-}
-@keyframes fall{
-  to{transform:translateY(120vh)}
-}
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio id="song" src="music.mp3"></audio>
 
+<!-- CHAPTER 1 -->
 <section>
   <div class="chapter">
     <h1>Hi.</h1>
@@ -136,6 +153,7 @@ footer{
   </div>
 </section>
 
+<!-- CHAPTER 2 -->
 <section>
   <div class="chapter">
     <h2>Something honest</h2>
@@ -145,11 +163,12 @@ footer{
     </p>
     <p>
       But you… you choose me.<br>
-      Even when I’m not trying to impress anymore.
+      Even when I’m not trying to prove anything.
     </p>
   </div>
 </section>
 
+<!-- CHAPTER 3 -->
 <section>
   <div class="chapter">
     <h2>This is how I see you</h2>
@@ -166,17 +185,17 @@ footer{
   </div>
 </section>
 
+<!-- CHAPTER 4 -->
 <section>
   <div class="chapter">
     <h2>A little magic</h2>
     <div class="flame"></div>
     <p>Even joy behaves differently around you.</p>
-    <div class="music-hint" id="musicText">
-      this song is ours
-    </div>
+    <div class="music-hint" id="musicText">this song is ours</div>
   </div>
 </section>
 
+<!-- CHAPTER 5 -->
 <section>
   <div class="chapter">
     <h2>So…</h2>
@@ -193,9 +212,7 @@ footer{
   </div>
 </section>
 
-<footer>
-  — The Good Dinosaur
-</footer>
+<footer>— The Good Dinosaur</footer>
 
 <script>
 /* reveal on scroll */
@@ -211,11 +228,10 @@ chapters.forEach(c=>observer.observe(c));
 const flame=document.querySelector('.flame');
 const song=document.getElementById('song');
 const musicText=document.getElementById('musicText');
-
 flame.onclick=()=>{
   song.play();
   musicText.classList.add('visible');
-}
+};
 
 /* no button */
 const noBtn=document.getElementById('noBtn');
@@ -228,17 +244,33 @@ noBtn.onmouseenter=()=>{
     noBtn.innerText='okay 💖';
     noBtn.style.transform='none';
   }
-}
+};
 
-/* yes */
+/* YES action */
 function accept(){
-  document.getElementById('result').innerHTML='✨💖✨';
-  for(let i=0;i<120;i++){
-    let c=document.createElement('div');
-    c.className='confetti';
-    c.style.left=Math.random()*100+'vw';
-    c.innerText='🌹';
-    document.body.appendChild(c);
+  const result=document.getElementById('result');
+
+  result.innerHTML=`
+    <p style="font-size:1.3rem;margin-top:20px;">
+      I knew it.
+    </p>
+    <div class="final-message">
+      There’s one more surprise waiting outside for you.
+    </div>
+  `;
+
+  const symbols=['💖','✨','🌸','🌹','💫'];
+
+  for(let i=0;i<140;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.left=Math.random()*100+'vw';
+    p.style.fontSize=(1.2+Math.random()*1.2)+'rem';
+    p.style.animationDuration=(2.5+Math.random()*2)+'s';
+    document.body.appendChild(p);
+
+    setTimeout(()=>p.remove(),4500);
   }
 }
 </script>
