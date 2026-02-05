@@ -5,89 +5,183 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Naaz 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
   font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#fdf6f0,#f7eef7);
   color:#3a2f3c;
-  background:linear-gradient(#bcd7e8,#eef5fb,#fdf6f0);
-  overflow-x:hidden;
   scroll-behavior:smooth;
 }
 
-/* Animation helpers */
-section{min-height:90vh; padding:80px 22px; display:flex; align-items:center; justify-content:center;}
-.chapter{max-width:720px; text-align:center; opacity:0; transform:translateY(20px); transition:all 1s ease;}
-.chapter.visible{opacity:1; transform:translateY(0);}
-h1,h2{font-family:'Playfair Display',serif;}
-h1{font-size:2.6rem;margin-bottom:18px}
-h2{font-size:2.2rem;margin-bottom:22px}
-p{font-size:1.05rem;line-height:1.8;margin:14px 0;}
-.photo{width:220px;border-radius:18px;margin:24px auto;filter:grayscale(5%) contrast(1.05);box-shadow:0 20px 40px rgba(0,0,0,0.12); transition:transform 0.5s ease;}
-.photo:hover{transform:translateY(-8px) scale(1.03);}
-.buttons{margin-top:30px}
-button{padding:14px 28px;border-radius:999px;border:none;font-size:1rem;cursor:pointer;margin:12px;}
-.yes{background:#ff7aa2;color:white;}
-.no{background:#eee;position:relative;}
-.music{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,0.65);color:white;padding:11px 18px;border-radius:30px;cursor:pointer;font-size:0.9rem;z-index:10;}
-.music-hint{margin-top:24px;opacity:0;transition:opacity 1s ease;}
-.music-hint.visible{opacity:0.7;}
-footer{text-align:center;font-style:italic;padding:40px 20px;opacity:0.8;}
-.confetti{font-size:2rem;position:fixed;top:-10%;animation:fall 3s linear forwards;}
-@keyframes fall{to{transform:translateY(120vh) rotate(720deg);}}
+section{
+  min-height:100vh;
+  padding:80px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.chapter{
+  max-width:720px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 1.2s ease;
+}
+
+.chapter.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h1,h2{
+  font-family:'Playfair Display',serif;
+  font-weight:400;
+}
+
+h1{font-size:2.6rem;margin-bottom:16px}
+h2{font-size:2.2rem;margin-bottom:24px}
+
+p{
+  font-size:1.05rem;
+  line-height:1.9;
+  margin:14px 0;
+}
+
+/* photos */
+.photo{
+  width:240px;
+  border-radius:18px;
+  margin:26px auto;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  transition:transform .4s ease;
+}
+.photo:hover{
+  transform:scale(1.04);
+}
+
+/* flame */
+.flame{
+  width:44px;height:44px;
+  background:radial-gradient(circle,#ffd27d,#ff6b6b);
+  border-radius:50%;
+  margin:40px auto;
+  animation:float 3s ease-in-out infinite;
+  cursor:pointer;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+/* buttons */
+.buttons{margin-top:40px}
+button{
+  padding:14px 30px;
+  border-radius:999px;
+  border:none;
+  font-size:1rem;
+  cursor:pointer;
+  margin:12px;
+}
+.yes{background:#ff7aa2;color:white}
+.no{background:#eee;position:relative}
+
+/* music */
+.music-hint{
+  margin-top:20px;
+  font-size:0.9rem;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.music-hint.visible{opacity:0.7}
+
+/* footer */
+footer{
+  padding:50px 20px;
+  text-align:center;
+  font-style:italic;
+  opacity:.85;
+}
+
+/* confetti */
+.confetti{
+  position:fixed;
+  top:-10%;
+  font-size:2rem;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(120vh)}
+}
 </style>
 </head>
+
 <body>
 
+<!-- MUSIC -->
 <audio id="song" src="music.mp3"></audio>
-<div class="music" onclick="toggleMusic()">🎵 Play our song</div>
 
 <section>
   <div class="chapter">
-    <h1>Hi, Naaz.</h1>
-    <p>This isn’t a grand entrance.<br>It’s just me… hoping you’ll stay for a while.</p>
-    <div class="hint">scroll slowly</div>
+    <h1>Hi.</h1>
+    <p>
+      This isn’t a grand entrance.<br>
+      It’s just me — quietly hoping you’ll stay for a while.
+    </p>
   </div>
 </section>
 
 <section>
   <div class="chapter">
-    <h2>Something I never told you</h2>
-    <p>Before you, love felt conditional.<br>Like I had to earn my place every day.</p>
-    <p>But you… you always come back.<br>You choose me — even when I’ve stopped trying to prove anything.</p>
+    <h2>Something honest</h2>
+    <p>
+      Before you, love felt conditional.<br>
+      Like I had to earn my place every day.
+    </p>
+    <p>
+      But you… you choose me.<br>
+      Even when I’m not trying to impress anymore.
+    </p>
   </div>
 </section>
 
 <section>
   <div class="chapter">
     <h2>This is how I see you</h2>
-    <img src="images/photo1.jpg" class="photo" alt="Photo 1">
+
+    <img src="photo1.jpg" class="photo">
     <p>You don’t realize how gentle your presence is.</p>
 
-    <img src="images/photo2.jpg" class="photo" alt="Photo 2">
+    <img src="photo2.jpg" class="photo">
     <p>You make the world quieter just by existing.</p>
 
-    <img src="images/photo3.jpeg" class="photo" alt="Photo 3">
-    <img src="images/photo4.jpeg" class="photo" alt="Photo 4">
-    <img src="images/photo5.jpeg" class="photo" alt="Photo 5">
+    <img src="photo3.jpeg" class="photo">
+    <img src="photo4.jpeg" class="photo">
+    <img src="photo5.jpeg" class="photo">
   </div>
 </section>
 
 <section>
   <div class="chapter">
     <h2>A little magic</h2>
-    <div class="flame" title="He says you’re smiling"></div>
+    <div class="flame"></div>
     <p>Even joy behaves differently around you.</p>
-    <div class="music-hint" id="musicText">this song reminds me of you</div>
+    <div class="music-hint" id="musicText">
+      this song is ours
+    </div>
   </div>
 </section>
 
 <section>
   <div class="chapter">
     <h2>So…</h2>
-    <p>Loving you feels like finding a home I didn’t know I was allowed to want.</p>
+    <p>Loving you feels like home.</p>
+
     <h2>Naaz, will you be my Valentine?</h2>
 
     <div class="buttons">
@@ -99,52 +193,53 @@ footer{text-align:center;font-style:italic;padding:40px 20px;opacity:0.8;}
   </div>
 </section>
 
-<footer>— The Good Dinosaur</footer>
+<footer>
+  — The Good Dinosaur
+</footer>
 
 <script>
-// reveal on scroll
-const chapters = document.querySelectorAll('.chapter');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+/* reveal on scroll */
+const chapters=document.querySelectorAll('.chapter');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('visible');
   });
-}, {threshold:0.3});
-chapters.forEach(c => observer.observe(c));
+},{threshold:0.3});
+chapters.forEach(c=>observer.observe(c));
 
-// music
-const song = document.getElementById('song');
-const musicText = document.getElementById('musicText');
-document.querySelector('.flame').addEventListener('click', () => {
+/* music */
+const flame=document.querySelector('.flame');
+const song=document.getElementById('song');
+const musicText=document.getElementById('musicText');
+
+flame.onclick=()=>{
   song.play();
   musicText.classList.add('visible');
-});
+}
 
-// no button tease
-const noBtn = document.getElementById('noBtn');
-let moved = false;
-noBtn.addEventListener('mouseenter', () => {
-  if (!moved) { noBtn.style.transform = 'translateX(120px)'; moved = true; }
-  else { noBtn.innerText = 'okay okay 💖'; noBtn.style.transform = 'none'; }
-});
-
-// yes confetti
-function accept() {
-  document.getElementById('result').innerHTML = '<div class="confetti">✨💖✨<br>I knew.</div>';
-  for(let i=0; i<120; i++){
-    let c = document.createElement('div');
-    c.className='confetti';
-    c.style.left=Math.random()*100+'vw';
-    c.style.color=['#ff5e7e','#ffd1dc','#ffb6c1'][Math.floor(Math.random()*3)];
-    c.innerText='🌹';
-    document.body.appendChild(c);
+/* no button */
+const noBtn=document.getElementById('noBtn');
+let moved=false;
+noBtn.onmouseenter=()=>{
+  if(!moved){
+    noBtn.style.transform='translateX(120px)';
+    moved=true;
+  }else{
+    noBtn.innerText='okay 💖';
+    noBtn.style.transform='none';
   }
 }
 
-// toggle music
-let playing=false;
-function toggleMusic(){
-  playing ? song.pause() : song.play();
-  playing = !playing;
+/* yes */
+function accept(){
+  document.getElementById('result').innerHTML='✨💖✨';
+  for(let i=0;i<120;i++){
+    let c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.innerText='🌹';
+    document.body.appendChild(c);
+  }
 }
 </script>
 
