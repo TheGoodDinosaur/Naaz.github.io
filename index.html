@@ -63,19 +63,59 @@ p{
 }
 .photo:hover{transform:scale(1.04)}
 
-/* flame */
-.flame{
-  width:44px;
-  height:44px;
-  background:radial-gradient(circle,#ffd27d,#ff6b6b);
-  border-radius:50%;
-  margin:40px auto;
-  animation:float 3s ease-in-out infinite;
-  cursor:pointer;
+/* Flame Container */
+.flame {
+  position: relative;
+  width: 60px;
+  height: 70px;
+  margin: 40px auto;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
 }
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+
+/* Main Flame Shape */
+.flame::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 65%,
+    #fff3b0 0%,
+    #ffcc70 25%,
+    #ff8c42 50%,
+    #ff4e50 75%,
+    #b22222 100%);
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+  box-shadow:
+    0 0 25px rgba(255, 140, 0, 0.8),
+    0 0 50px rgba(255, 80, 0, 0.5);
+  animation: flicker 2s infinite ease-in-out alternate;
+}
+
+/* Eyes */
+.eye {
+  position: absolute;
+  width: 8px;
+  height: 10px;
+  background: #1f1f1f;
+  border-radius: 50%;
+  top: 35px;
+}
+
+.eye.left { left: 18px; }
+.eye.right { right: 18px; }
+
+/* Float */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Flicker */
+@keyframes flicker {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05, 0.95); }
+  100% { transform: scale(0.97, 1.08); }
 }
 
 /* buttons */
@@ -156,13 +196,19 @@ footer{
 
 <!-- CHAPTER 2 -->
 <section>
-  <div class="chapter">
-    <h2>A little magic</h2>
-    <div class="flame"></div>
-    <p>click the above flame</p>
-    <p>Even joy behaves differently around you.</p>
-    <div class="music-hint" id="musicText">our song</div>
-  </div>
+  <div class="flame" id="flame">
+  <div class="eye left"></div>
+  <div class="eye right"></div>
+</div>
+<div id="whisper">He says you’re smiling.</div>
+const flame = document.getElementById("flame");
+
+flame.addEventListener("click", () => {
+  flame.style.transform = "scale(1.2)";
+  setTimeout(() => {
+    flame.style.transform = "scale(1)";
+  }, 300);
+});
 </section>
 
 <!-- CHAPTER 3 -->
