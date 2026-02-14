@@ -63,87 +63,24 @@ p{
 }
 .photo:hover{transform:scale(1.04)}
 
-/* flame */
-.calcifer{
-  position:relative;
-  width:90px;
-  height:110px;
+/* CALCIFER */
+.calcifer-container{
+  display:flex;
+  justify-content:center;
   margin:40px auto;
   cursor:pointer;
   animation:float 3s ease-in-out infinite;
 }
 
-/* Fire shape */
-.fire{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:radial-gradient(circle at 50% 70%,
-    #fff4c1 0%,
-    #ffd36b 25%,
-    #ff9b3f 55%,
-    #ff5a3c 75%,
-    #d62828 100%);
-  border-radius:50% 50% 45% 45%;
-  filter:drop-shadow(0 0 20px rgba(255,150,60,0.6));
-  animation:flicker 1.4s infinite alternate ease-in-out;
+.calcifer-img{
+  width:130px;
+  transition:transform .4s ease, filter .4s ease;
+  filter:drop-shadow(0 0 20px rgba(255,140,60,0.6));
 }
 
-/* Flicker animation */
-@keyframes flicker{
-  0%{transform:scale(1) skewX(0deg)}
-  25%{transform:scale(1.05) skewX(2deg)}
-  50%{transform:scale(.97) skewX(-2deg)}
-  75%{transform:scale(1.04) skewX(1deg)}
-  100%{transform:scale(1)}
-}
-
-/* Face */
-.face{
-  position:absolute;
-  top:28px;
-  left:0;
-  width:100%;
-  text-align:center;
-  z-index:2;
-}
-
-.eyes{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-}
-
-.eyes span{
-  width:14px;
-  height:18px;
-  background:white;
-  border-radius:50%;
-  position:relative;
-}
-
-.eyes span::after{
-  content:'';
-  position:absolute;
-  width:6px;
-  height:8px;
-  background:#222;
-  border-radius:50%;
-  top:5px;
-  left:4px;
-  animation:blink 4s infinite;
-}
-@keyframes blink{
-  0%,90%,100%{height:8px}
-  95%{height:1px}
-}
-
-.mouth{
-  width:24px;
-  height:12px;
-  background:#3a2f3c;
-  border-radius:0 0 20px 20px;
-  margin:10px auto 0;
+.calcifer-img:hover{
+  transform:scale(1.08);
+  filter:drop-shadow(0 0 32px rgba(255,140,60,0.9));
 }
 
 @keyframes float{
@@ -161,7 +98,16 @@ button{
   cursor:pointer;
   margin:12px;
 }
-.yes{background:#ff7aa2;color:white}
+.yes{
+  background:#ff7aa2;
+  color:white;
+  box-shadow:0 10px 25px rgba(255,122,162,0.4);
+  transition:all .3s ease;
+}
+.yes:hover{
+  transform:scale(1.05);
+  box-shadow:0 15px 35px rgba(255,122,162,0.6);
+}
 .no{background:#eee;position:relative}
 
 /* music hint */
@@ -231,8 +177,12 @@ footer{
 <section>
   <div class="chapter">
     <h2>A little magic</h2>
-    <div class="calcifer" id="calcifer">   <div class="fire"></div>   <div class="face">     <div class="eyes">       <span></span>       <span></span>     </div>     <div class="mouth"></div>   </div> </div>
-    <p>click the above flame</p>
+
+    <div class="calcifer-container" id="calcifer">
+      <img src="calcifer.png" class="calcifer-img" alt="Calcifer">
+    </div>
+
+    <p>click Calcifer ✨</p>
     <p>Even joy behaves differently around you.</p>
     <div class="music-hint" id="musicText">our song</div>
   </div>
@@ -287,10 +237,9 @@ footer{
   </div>
 </section>
 
-<footer>— The Good Dinosaur</footer>
+<footer>— Yours</footer>
 
 <script>
-/* reveal on scroll */
 const chapters=document.querySelectorAll('.chapter');
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -299,16 +248,29 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:0.3});
 chapters.forEach(c=>observer.observe(c));
 
-/* music */
 const flame=document.getElementById('calcifer');
 const song=document.getElementById('song');
 const musicText=document.getElementById('musicText');
+
 flame.onclick=()=>{
+  song.volume=0;
   song.play();
   musicText.classList.add('visible');
+
+  let fade=setInterval(()=>{
+    if(song.volume<0.9){
+      song.volume+=0.05;
+    }else{
+      clearInterval(fade);
+    }
+  },200);
+
+  flame.querySelector('img').style.transform="scale(1.15)";
+  setTimeout(()=>{
+    flame.querySelector('img').style.transform="scale(1)";
+  },400);
 };
 
-/* no button */
 const noBtn=document.getElementById('noBtn');
 let moved=false;
 noBtn.onmouseenter=()=>{
@@ -321,7 +283,6 @@ noBtn.onmouseenter=()=>{
   }
 };
 
-/* YES action */
 function accept(){
   const result=document.getElementById('result');
 
@@ -330,7 +291,9 @@ function accept(){
       I knew it.
     </p>
     <div class="final-message">
-      There’s a little something waiting for you outside.
+      Because loving you was never a question.<br><br>
+      There’s a little something waiting for you outside —
+      but this was the part I wanted you to feel first.
     </div>
   `;
 
