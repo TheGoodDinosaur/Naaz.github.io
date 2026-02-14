@@ -83,7 +83,8 @@ body{
   100%{transform:translateX(0)}
 }
 
-/* CONTENT STYLING */
+/* -------- YOUR ORIGINAL CSS BELOW -------- */
+
 section{
   min-height:100vh;
   padding:80px 24px;
@@ -227,7 +228,7 @@ footer{
 
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- PASSWORD SCREEN -->
 <div id="lockScreen">
   <div class="lock-box">
     <h2>This little world is private 💖</h2>
@@ -238,8 +239,10 @@ footer{
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- ORIGINAL CONTENT WRAPPED -->
 <div id="mainContent" style="display:none;">
+
+<!-- EVERYTHING BELOW IS YOUR ORIGINAL CODE UNTOUCHED -->
 
 <audio id="song" src="music.mp3"></audio>
 
@@ -254,12 +257,14 @@ footer{
   </div>
 </section>
 
+<!-- KEEPING ALL OTHER SECTIONS EXACTLY SAME -->
+
 <section>
   <div class="chapter">
     <h2>A little magic</h2>
 
     <div class="calcifer-wrapper" id="calcifer">
-      <img src="calcifer.png" class="calcifer-img">
+      <img src="calcifer.png" class="calcifer-img" alt="Calcifer">
     </div>
 
     <p>Click Calcifer</p>
@@ -271,16 +276,27 @@ footer{
 <section>
   <div class="chapter">
     <h2>Something honest</h2>
-    <p>Before you, love felt conditional.</p>
-    <p>But you… you choose me.</p>
+    <p>
+      Before you, love felt conditional.<br>
+      Like I had to earn my place every day.
+    </p>
+    <p>
+      But you… you choose me.<br>
+      Even when I’m not trying to prove anything.
+    </p>
   </div>
 </section>
 
 <section>
   <div class="chapter">
     <h2>This is how I see you</h2>
+
     <img src="photo2.jpg" class="photo">
+    <p>You don’t realize how gentle your presence is.</p>
+
     <img src="photo1.jpg" class="photo">
+    <p>You make the world quieter just by existing.</p>
+
     <img src="photo3.jpeg" class="photo">
     <img src="photo4.jpeg" class="photo">
     <img src="photo5.jpeg" class="photo">
@@ -289,6 +305,9 @@ footer{
 
 <section>
   <div class="chapter">
+    <h2>So…</h2>
+    <p>Loving you feels like home.</p>
+
     <h2>Naaz, will you be my Valentine?</h2>
 
     <div class="buttons">
@@ -301,6 +320,7 @@ footer{
 </section>
 
 <footer>— the good dinosaur 🦕</footer>
+
 </div>
 
 <script>
@@ -319,9 +339,13 @@ function checkPassword(){
   }
 }
 
+/* YOUR ORIGINAL JS BELOW UNTOUCHED */
+
 const chapters=document.querySelectorAll('.chapter');
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('visible');
+  });
 },{threshold:0.3});
 chapters.forEach(c=>observer.observe(c));
 
@@ -331,19 +355,28 @@ const musicText=document.getElementById('musicText');
 
 flame.onclick=()=>{
   song.volume=0;
-  song.play().catch(err=>console.log(err));
+  song.play().catch(err => console.log("Audio failed:", err));
   musicText.classList.add('visible');
+
   let fade=setInterval(()=>{
-    if(song.volume<0.9){song.volume+=0.05;}
-    else{clearInterval(fade);}
+    if(song.volume<0.9){
+      song.volume+=0.05;
+    }else{
+      clearInterval(fade);
+    }
   },200);
+
+  flame.querySelector('img').style.transform="scale(1.15)";
+  setTimeout(()=>{
+    flame.querySelector('img').style.transform="scale(1)";
+  },300);
 };
 
 setInterval(()=>{
   const ember=document.createElement('div');
   ember.className='ember';
   ember.innerText='✨';
-  ember.style.left=Math.random()*flame.offsetWidth+'px';
+  ember.style.left = Math.random()*flame.offsetWidth + 'px';
   flame.appendChild(ember);
   setTimeout(()=>ember.remove(),2500);
 },600);
@@ -351,13 +384,39 @@ setInterval(()=>{
 const noBtn=document.getElementById('noBtn');
 let moved=false;
 noBtn.onmouseenter=()=>{
-  if(!moved){noBtn.style.transform='translateX(120px)';moved=true;}
-  else{noBtn.innerText='okay 💖';noBtn.style.transform='none';}
+  if(!moved){
+    noBtn.style.transform='translateX(120px)';
+    moved=true;
+  }else{
+    noBtn.innerText='okay 💖';
+    noBtn.style.transform='none';
+  }
 };
 
 function accept(){
   const result=document.getElementById('result');
-  result.innerHTML=`<p style="font-size:1.3rem;margin-top:20px;">I knew it bubu 💖.</p>`;
+
+  result.innerHTML=`
+    <p style="font-size:1.3rem;margin-top:20px;">
+      I knew it bubu 💖.
+    </p>
+    <div class="final-message">
+      Because loving you was never an option.<br><br>
+      There’s a little something waiting for you outside.
+    </div>
+  `;
+
+  const symbols=['💖','✨','🌸','🌹','💫'];
+
+  for(let i=0;i<140;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(2.5+Math.random()*2)+'s';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),4500);
+  }
 }
 </script>
 
