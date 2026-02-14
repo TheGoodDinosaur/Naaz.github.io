@@ -296,7 +296,7 @@ flame.onclick=()=>{
   song.volume=0;
   song.play();
   musicText.classList.add('visible');
-
+  let fade=setInterval(()=>{ if(song.volume<0.9){ song.volume+=0.05; }else{ clearInterval(fade); } },200);
   speech.innerText="Hehe… our song 💖";
   speech.classList.add('show');
 
@@ -313,10 +313,13 @@ setInterval(()=>{
   const ember=document.createElement('div');
   ember.className='ember';
   ember.innerText='✨';
-  ember.style.left=Math.random()*80+10+'px';
+
+  const calciferWidth = flame.offsetWidth;
+  ember.style.left = Math.random() * calciferWidth + 'px';
+
   flame.appendChild(ember);
   setTimeout(()=>ember.remove(),2500);
-},700);
+},600);
 
 const noBtn=document.getElementById('noBtn');
 let moved=false;
