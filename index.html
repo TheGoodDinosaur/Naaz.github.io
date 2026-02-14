@@ -167,6 +167,32 @@ footer{
 </head>
 
 <body>
+<script>
+(function() {
+  const correctPassword = "ONLY FOR YOU BUBU"; // CHANGE THIS
+
+  const userPassword = prompt("This page is private 💖\n\nEnter password:");
+
+  if (userPassword !== correctPassword) {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-family:sans-serif;
+        background:#fdf6f0;
+        text-align:center;
+      ">
+        <div>
+          <h2>Access denied 💔</h2>
+          <p>This little world isn't for everyone.</p>
+        </div>
+      </div>
+    `;
+  }
+})();
+</script>
 
 <audio id="song" src="music.mp3"></audio>
 
