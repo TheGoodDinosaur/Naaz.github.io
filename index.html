@@ -18,6 +18,72 @@ body{
   overflow-x:hidden;
 }
 
+/* LOCK SCREEN */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#fdf6f0,#f7eef7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.lock-box{
+  text-align:center;
+  max-width:320px;
+}
+
+.lock-box h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:10px;
+}
+
+.lock-box p{
+  font-size:.9rem;
+  opacity:.7;
+}
+
+.lock-box input{
+  margin-top:20px;
+  padding:12px 18px;
+  width:100%;
+  border-radius:999px;
+  border:1px solid #eee;
+  outline:none;
+  text-align:center;
+  font-size:1rem;
+}
+
+.lock-box button{
+  margin-top:14px;
+  padding:10px 22px;
+  border-radius:999px;
+  border:none;
+  background:#ff7aa2;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.lock-box button:hover{transform:scale(1.05);}
+
+#errorMessage{
+  color:#ff6b81;
+  font-size:.85rem;
+  margin-top:10px;
+  height:18px;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
+
+/* CONTENT STYLING */
 section{
   min-height:100vh;
   padding:80px 24px;
@@ -53,7 +119,6 @@ p{
   margin:14px 0;
 }
 
-/* photos */
 .photo{
   width:240px;
   border-radius:18px;
@@ -63,7 +128,6 @@ p{
 }
 .photo:hover{transform:scale(1.04)}
 
-/* CALCIFER CONTAINER */
 .calcifer-wrapper{
   position:relative;
   display:flex;
@@ -79,13 +143,11 @@ p{
   filter:drop-shadow(0 0 20px rgba(255,140,60,0.6));
 }
 
-/* floating animation */
 @keyframes float{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
 }
 
-/* EMBERS */
 .ember{
   position:absolute;
   bottom:10px;
@@ -100,7 +162,6 @@ p{
   100%{transform:translateY(-80px) scale(.5);opacity:0}
 }
 
-/* buttons */
 .buttons{margin-top:40px}
 
 button{
@@ -127,7 +188,6 @@ button{
 .yes:hover{transform:scale(1.08);}
 .no{background:#eee;position:relative}
 
-/* music hint */
 .music-hint{
   margin-top:20px;
   font-size:.9rem;
@@ -136,7 +196,6 @@ button{
 }
 .music-hint.visible{opacity:.7}
 
-/* celebration particles */
 .particle{
   position:fixed;
   top:-10%;
@@ -167,33 +226,20 @@ footer{
 </head>
 
 <body>
-<script>
-(function() {
-  const correctPassword = "ONLY FOR YOU BUBU"; // CHANGE THIS
 
-  const userPassword = prompt("This page is private 💖\n\nEnter password:");
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>This little world is private 💖</h2>
+    <p>Enter the password</p>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="errorMessage"></p>
+  </div>
+</div>
 
-  if (userPassword !== correctPassword) {
-    document.body.innerHTML = `
-      <div style="
-        height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-family:sans-serif;
-        background:#fdf6f0;
-        text-align:center;
-      ">
-        <div>
-          <h2>Access denied 💔</h2>
-          <p>This little world isn't for everyone.</p>
-          Just kiddding, please scroll<br>
-        </div>
-      </div>
-    `;
-  }
-})();
-</script>
+<!-- MAIN CONTENT -->
+<div id="mainContent" style="display:none;">
 
 <audio id="song" src="music.mp3"></audio>
 
@@ -213,7 +259,7 @@ footer{
     <h2>A little magic</h2>
 
     <div class="calcifer-wrapper" id="calcifer">
-      <img src="calcifer.png" class="calcifer-img" alt="Calcifer">
+      <img src="calcifer.png" class="calcifer-img">
     </div>
 
     <p>Click Calcifer</p>
@@ -225,27 +271,16 @@ footer{
 <section>
   <div class="chapter">
     <h2>Something honest</h2>
-    <p>
-      Before you, love felt conditional.<br>
-      Like I had to earn my place every day.
-    </p>
-    <p>
-      But you… you choose me.<br>
-      Even when I’m not trying to prove anything.
-    </p>
+    <p>Before you, love felt conditional.</p>
+    <p>But you… you choose me.</p>
   </div>
 </section>
 
 <section>
   <div class="chapter">
     <h2>This is how I see you</h2>
-
     <img src="photo2.jpg" class="photo">
-    <p>You don’t realize how gentle your presence is.</p>
-
     <img src="photo1.jpg" class="photo">
-    <p>You make the world quieter just by existing.</p>
-
     <img src="photo3.jpeg" class="photo">
     <img src="photo4.jpeg" class="photo">
     <img src="photo5.jpeg" class="photo">
@@ -254,9 +289,6 @@ footer{
 
 <section>
   <div class="chapter">
-    <h2>So…</h2>
-    <p>Loving you feels like home.</p>
-
     <h2>Naaz, will you be my Valentine?</h2>
 
     <div class="buttons">
@@ -269,13 +301,27 @@ footer{
 </section>
 
 <footer>— the good dinosaur 🦕</footer>
+</div>
 
 <script>
+function checkPassword(){
+  const correctPassword = "ONLY FOR YOU BUBU";
+  const input = document.getElementById("passwordInput").value;
+  const error = document.getElementById("errorMessage");
+
+  if(input === correctPassword){
+    document.getElementById("lockScreen").style.display="none";
+    document.getElementById("mainContent").style.display="block";
+  } else {
+    error.innerText="That’s not it 💔";
+    document.querySelector(".lock-box").style.animation="shake 0.3s";
+    setTimeout(()=>{document.querySelector(".lock-box").style.animation="";},300);
+  }
+}
+
 const chapters=document.querySelectorAll('.chapter');
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add('visible');
-  });
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:0.3});
 chapters.forEach(c=>observer.observe(c));
 
@@ -285,28 +331,19 @@ const musicText=document.getElementById('musicText');
 
 flame.onclick=()=>{
   song.volume=0;
-  song.play().catch(err => console.log("Audio failed:", err));
+  song.play().catch(err=>console.log(err));
   musicText.classList.add('visible');
-
   let fade=setInterval(()=>{
-    if(song.volume<0.9){
-      song.volume+=0.05;
-    }else{
-      clearInterval(fade);
-    }
+    if(song.volume<0.9){song.volume+=0.05;}
+    else{clearInterval(fade);}
   },200);
-
-  flame.querySelector('img').style.transform="scale(1.15)";
-  setTimeout(()=>{
-    flame.querySelector('img').style.transform="scale(1)";
-  },300);
 };
 
 setInterval(()=>{
   const ember=document.createElement('div');
   ember.className='ember';
   ember.innerText='✨';
-  ember.style.left = Math.random()*flame.offsetWidth + 'px';
+  ember.style.left=Math.random()*flame.offsetWidth+'px';
   flame.appendChild(ember);
   setTimeout(()=>ember.remove(),2500);
 },600);
@@ -314,39 +351,13 @@ setInterval(()=>{
 const noBtn=document.getElementById('noBtn');
 let moved=false;
 noBtn.onmouseenter=()=>{
-  if(!moved){
-    noBtn.style.transform='translateX(120px)';
-    moved=true;
-  }else{
-    noBtn.innerText='okay 💖';
-    noBtn.style.transform='none';
-  }
+  if(!moved){noBtn.style.transform='translateX(120px)';moved=true;}
+  else{noBtn.innerText='okay 💖';noBtn.style.transform='none';}
 };
 
 function accept(){
   const result=document.getElementById('result');
-
-  result.innerHTML=`
-    <p style="font-size:1.3rem;margin-top:20px;">
-      I knew it bubu 💖.
-    </p>
-    <div class="final-message">
-      Because loving you was never an option.<br><br>
-      There’s a little something waiting for you outside.
-    </div>
-  `;
-
-  const symbols=['💖','✨','🌸','🌹','💫'];
-
-  for(let i=0;i<140;i++){
-    const p=document.createElement('div');
-    p.className='particle';
-    p.innerText=symbols[Math.floor(Math.random()*symbols.length)];
-    p.style.left=Math.random()*100+'vw';
-    p.style.animationDuration=(2.5+Math.random()*2)+'s';
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),4500);
-  }
+  result.innerHTML=`<p style="font-size:1.3rem;margin-top:20px;">I knew it bubu 💖.</p>`;
 }
 </script>
 
