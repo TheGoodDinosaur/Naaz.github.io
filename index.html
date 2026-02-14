@@ -201,14 +201,7 @@ footer{
   <div class="eye right"></div>
 </div>
 <div id="whisper">He says you’re smiling.</div>
-const flame = document.getElementById("flame");
 
-flame.addEventListener("click", () => {
-  flame.style.transform = "scale(1.2)";
-  setTimeout(() => {
-    flame.style.transform = "scale(1)";
-  }, 300);
-});
 </section>
 
 <!-- CHAPTER 3 -->
@@ -321,6 +314,14 @@ function accept(){
     setTimeout(()=>p.remove(),4500);
   }
 }
+  const flame = document.getElementById("flame");
+
+flame.addEventListener("click", () => {
+  flame.style.transform = "scale(1.2)";
+  setTimeout(() => {
+    flame.style.transform = "scale(1)";
+  }, 300);
+});
 </script>
 
 </body>
